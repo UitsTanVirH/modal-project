@@ -1,6 +1,8 @@
 <template>
   <h1>{{title}}</h1>
-  <Modal/>
+  <div v-if="showModal">
+    <Modal :header="header" :text="text" theme="sale"/>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,7 +14,10 @@ export default defineComponent({
   components: {Modal},
   data() {
     return {
-      title: "Welcome to vue"
+      title: "Welcome to vue", 
+      header: 'Sign up for the giveaway!',
+      text: 'Grab your ninja swag for half the price',
+      showModal: 'false'
     }
   },
 });
