@@ -1,9 +1,29 @@
 <template>
   <h1>{{title}}</h1>
+
   <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale"/>
+    <Modal theme="sale" @close = "toggleModal">
+      <h1>Sign up for the giveaway!</h1>
+      <p>Grab your ninja swag for half the price</p>
+
+      <template v-slot:links>
+        <a href="#">Sign Up</a>
+        <a href="#">More info</a>
+      </template>
+    </Modal>  
   </div>
+
+  <div v-if="showModalTwo">
+    <Modal theme="sale" @close = "toggleModalTwo">
+      <h1>Another Modal</h1>
+      <p>Conditions apply</p>
+    </Modal>  
+  </div>
+
+  <button @click="toggleModal">Open modal</button>
+  <button @click="toggleModalTwo">Open modal Two</button>
 </template>
+
 
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -14,14 +34,22 @@ export default defineComponent({
   components: {Modal},
   data() {
     return {
-      title: "Welcome to vue", 
-      header: 'Sign up for the giveaway!',
-      text: 'Grab your ninja swag for half the price',
-      showModal: 'false'
+      title: "Modal Project", 
+      showModal: false,
+      showModalTwo: false
     }
   },
+  methods: {
+    toggleModal () {
+      this.showModal = !this.showModal;
+    },
+    toggleModalTwo () {
+      this.showModalTwo = !this.showModalTwo;
+    }
+  }
 });
 </script>
+
 
 <style>
 #app {
@@ -32,4 +60,5 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
